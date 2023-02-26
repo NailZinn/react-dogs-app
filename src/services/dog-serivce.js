@@ -1,15 +1,26 @@
 export default class DogService {
   
-  _requestInfo = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': 'live_9aA2Sl9WDuP4DlV1gWwWdHoXtRQwjKRsgLPBcpVgN4e6JZD0jp3DsX4DnDunV4Mc'
+  getDogs = (pageNumber, pageSize, filters) => {
+
+    const requestInfo = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(filters)
     }
+    
+    return fetch(`https://localhost:7170/api.dogs?pagenumber=${pageNumber}&pagesize=${pageSize}`, requestInfo)
+      .then((body) => body.json())
   }
 
-  getDogs = () => {
-    return fetch('https://api.thedogapi.com/v1/images/search?format=json&limit=10&has_breeds=1', this._requestInfo)
+  getDogById = (id) => {
+
+    const requestInfo = {
+      method: 'GET'
+    }
+
+    return fetch(`https://localhost:7170/api.dogs/${id}`, requestInfo)
       .then((body) => body.json())
   }
 }

@@ -1,0 +1,9 @@
+.select-container {
+  display: flex;
+  align-items: center;
+}
+  
+.select {
+  width: 60px;
+  margin: 4px;
+}
